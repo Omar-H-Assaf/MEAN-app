@@ -1,0 +1,93 @@
+.teams-wrapper {
+    margin: 4rem;
+    cursor: pointer;
+}
+
+.header-wrapper {
+    margin-top: 3rem;
+}
+
+.header-border {
+    border-top: solid 10px #15151e;
+    border-right: solid 10px #15151e;
+    border-top-right-radius: 25px
+}
+
+.header-h1 {
+    font-size: 62px;
+    line-height: 62px;
+    font-family: 'Times New Roman', Times, serif
+}
+
+.team-card {
+    border-top: solid 2px #000;
+    border-right: solid 2px #000;
+    border-top-right-radius: 10px;
+    height: 23rem;
+    margin-bottom: 3rem;
+    width: 37rem;
+    margin-right: 3rem;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.team-card:hover {
+    border-top: solid 2px #e10600;
+    border-right: solid 2px #e10600;
+
+}
+
+.card-content {
+    display: grid;
+    justify-content: start;
+    align-items: center;
+    margin-right: 3rem;
+}
+
+h2 {
+    border-bottom: 1px solid #949498;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.driver-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 36rem;
+    ;
+}
+
+.driver-wrapper {
+    border-right: solid 1px #949498;
+    border-bottom: solid 1px #949498;
+    border-bottom-right-radius: 10px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding: 0;
+    width: 100%;
+    max-width: 48%;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.driver-wrapper:hover {
+    border-right: solid 1px #e10600;
+    border-bottom: solid 1px #e10600;
+}
+
+.driver-image {
+    height: 50px;
+    width: 50px;
+}
+
+.car-image {
+    margin-left: 9%;
+    margin-top: 1rem;
+}

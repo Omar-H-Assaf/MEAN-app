@@ -1,0 +1,35 @@
+<div class="teams-wrapper">
+    <div class="header-wrapper">
+        <div class="header-border">
+            <h1 class="header-h1">F1 Teams 2023</h1>
+        </div>
+    </div>
+    <h3>Discover everything you need to know about this year's Formula 1 teams - drivers, podium finishes, points earned
+        and
+        championship titles.</h3>
+    <div *ngFor="let team of teams" class="team-card" routerLink="/teams/{{team._id}}">
+        <div class="row">
+            <div class="card-content">
+                <h2>
+                    {{team.teamName}}
+                </h2>
+                <h2>
+                    Team Cheif: {{team.teamCheif}}
+                </h2>
+                <div class="driver-section">
+                    <ng-container *ngFor="let driver of team.drivers ">
+                        <div class="driver-wrapper" routerLink="/teams/{{team._id}}/drivers/{{driver._id}}">
+                            <h3>
+                                {{driver.driverName}}
+                            </h3>
+                            <img class="driver-image" src="https://media.formula1.com/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/2col/image.png"/>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <img
+                class="car-image"
+                src="https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2023/red-bull-racing.png.transform/4col/image.png" />
+        </div>
+    </div>
+</div>

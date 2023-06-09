@@ -1,0 +1,26 @@
+<br />
+<br />
+<br />
+
+<div *ngIf="!showLabel">
+Team Name: {{team.teamName}}
+</div>
+<div *ngIf="showLabel">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+    <label>Team Name:</label>
+    <input defaultValue="{{team.teamName}}" id="name" formControlName="teamName"/>
+    <br />
+    <br />
+    <br />
+    <input type="submit" value="Save"/>
+    </form>
+</div>
+
+<br />
+<br />
+<br />
+<div *ngIf="!showLabel">
+<button (click)="onClickEdit()">{{buttonText}}</button>
+<button (click)="onClickDelete()">delete</button>
+
+</div>

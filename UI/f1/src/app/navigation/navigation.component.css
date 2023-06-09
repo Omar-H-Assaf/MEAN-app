@@ -1,0 +1,46 @@
+.nav-wrapper {
+    background-color: #e10600;
+    height: 4rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.f1-logo {
+    height: 4rem;
+    width: 8rem;
+    cursor: pointer;
+}
+
+.dd {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-span {
+    margin-left: 2rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    color: #fff;
+}
+
+.btn-div {
+    height: 3rem;
+    width: 7rem;
+    background-color: #1f1f27;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-right: 3rem;
+}
+
+.button-span {
+    cursor: pointer;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    color: #fff;
+}
