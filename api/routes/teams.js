@@ -4,21 +4,21 @@ const router = express.Router();
 const teamsController = require("../controller/teams.controller");
 const driversController = require("../controller/drivers.controller")
 
-router.route("/teams")
+router.route("/")
     .get(teamsController.getAllTeams)
     .post(teamsController.addOneTeam);
 
-router.route("/teams/:teamId")
+router.route("/:teamId")
     .delete(teamsController.deleteOneTeam)
     .get(teamsController.getOneTeam)
     .put(teamsController.updateOneTeam)
     .patch(teamsController.updateOneTeam);
 
-router.route("/teams/:teamId/drivers")
-    .get(driversController.getAllDrivers)
+router.route("/:teamId/drivers")
+    .get(driversController.getAllDriversByTeamId)
     .post(driversController.addOneDriver);
 
-router.route("/teams/:teamId/drivers/:driverId")
+router.route("/:teamId/drivers/:driverId")
     .get(driversController.getOneDriverById)
     .delete(driversController.deleteDriverById)
     .patch(driversController.updateDriverById)

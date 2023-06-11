@@ -44,19 +44,33 @@ const getAllTeams = (req, res) => {
             res.status(400).json({ "message": "Cannot exceed count of " + maxCount });
             return;
     }
-
-    teamFindAllExecWithCallBack(offset, count, req.params.teamId, (err, teams) => {
-        if (err) {
-            response.status = 500;
-            response.message = err;
-        } else {
-            response.status = 200;
-            response.message = teams;
-        }
-        res.status(response.status).json(response.message);
-    })
+    Team.find().skip(offset).limit(count).exec().then(teams => {
+        res.status(response.status).json(teams);
+    }).catch(err => {});
+    // teamFindAllExecWithCallBack(offset, count, req.params.teamId, (err, teams) => {
+    //     if (err) {
+    //         response.status = 500;
+    //         response.message = err;
+    //     } else {
+    //         response.status = 200;
+    //         response.message = teams;
+    //     }
+    //     res.status(response.status).json(response.message);
+    // })
 }
 
+    // bcrypt.genSalt(10).then((salt) => {
+    //     _getSalt(req.body.password, salt)
+    //         .then((encryptedPassword) => {
+    //             userModel.create({
+    //                 email: req.body.email,
+    //                 password: encryptedPassword,
+    //                 firstName: req.body.firstName,
+    //                 lastName: req.body.lastName,
+    //             }).then().catch(err => { console.log(err); });
+    //         });
+    // });
+    // userModel.create(req.body).then().catch(err => {console.log(err);});
 const addOneTeam = (req, res) => {
     teamAddOneExecWithCallBack(req.body, (err, team) => {
         const response = { status: 200, message: [] };

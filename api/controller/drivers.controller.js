@@ -1,9 +1,7 @@
 const callbackify = require("util").callbackify
 const { driverSubDocument } = require("../../utils");
 
-const teamDriversFindAllExecWithCallBack = callbackify((offset, count, teamId) => {
-    return driverSubDocument(teamId).skip(offset).limit(count).exec();
-});
+const response = { status: 200, message: [] };
 
 const teamFindOneExecWithCallBack = callbackify((teamId) => {
     return driverSubDocument(teamId);
@@ -14,6 +12,25 @@ const teamDriverSaveExecWithCallBack = callbackify((team)=>{
 });
 
 const getAllDrivers = (req, res) => {
+
+}
+
+const _getAllDriverByTeamId = (drivers) => {
+    const driversResponse = new Promise((resolve, reject) => {
+        if (drivers) {
+            response.status = 200;
+            response.message = drivers;
+            resolve();
+        } else {
+            response.status = 500;
+            response.message = "No Drivers";
+            reject();
+        }
+    });
+    return driversResponse;
+}
+
+const getAllDriversByTeamId = (req, res) => {
     let offset = 0;
     let count = 5;
     const maxCount = parseInt(process.env.DEFAULT_MAX_FIND_LIMIT, 10);
@@ -35,20 +52,22 @@ const getAllDrivers = (req, res) => {
         return;
     }
 
-    teamDriversFindAllExecWithCallBack(offset, count, req.params.teamId, (err, drivers) => {
-        const response = { status: 200, message: [] };
-        if (err) {
-            response.status = 500;
-            response.message = err;
-        } else {
-            response.status = 200;
-            response.message = drivers;
-        }
-        res.status(response.status).json(response.message);
-    });
+    driverSubDocument(req.params.teamId).skip(offset).limit(count).exec()
+        .then(drivers => _getAllDriverByTeamId(drivers))
+        .then()
+        .catch(err => { response.status = 500; response.message = err; })
+        .finally(res.status(response.status).json(response.message));
+}
+
+const _getOneDriverById = () => {
+
 }
 
 const getOneDriverById = (req, res) => {
+
+    driverSubDocument(req.params.teamId)
+        .then(e => console.log(e))
+
     teamFindOneExecWithCallBack(req.params.teamId, (err, team) => {
         const response = { status: 200, message: [] };
         if (err) {
@@ -146,7 +165,7 @@ const updateDriverById = (req, res) => {
 }
 
 module.exports = {
-    getAllDrivers,
+    getAllDriversByTeamId,
     getOneDriverById,
     addOneDriver,
     deleteDriverById,

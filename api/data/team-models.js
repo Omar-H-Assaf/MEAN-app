@@ -26,6 +26,8 @@ const teamsSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    fullTeamName: String,
+    teamcolor: String,
     powerUnit: String,
     firstTeamEntry: Number,
     worldChampions: Number,

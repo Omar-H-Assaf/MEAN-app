@@ -1,1 +1,52 @@
-<p>register works!</p>
+<div class="second-nav">
+    <span class="header-span" (click)="signIn()">Sign in</span>
+    <span class="header-span" (click)="register()">Register</span>
+</div>
+
+<div class="card-container">
+    <div *ngIf="isRegister">
+        <div class="register-card">
+            <h1 class="header">Sign in</h1>
+
+            <form (ngSubmit)="onLogin()" class="signin-form">
+                <label>
+                    Email address
+                </label>
+                <input class="input" placeholder="Email address" type="text" id="email" [formControl]="email" />
+                <label>
+                    Password:
+                </label>
+                <input class="input" placeholder="Password" type="password" id="password" [formControl]="password" />
+                <input type="submit" value="Sign in" (click)="onLogin" class="button" />
+            </form>
+        </div>
+    </div>
+    <div *ngIf="!isRegister">
+        <div class="register-card">
+            <h1 class="header">CREATE ACCOUNT</h1>
+
+            <form (ngSubmit)="onLogin()" class="signin-form">
+                <div>
+                    <label>
+                        First name
+                    </label>
+                    <input class="input" placeholder="First name" type="text" id="email" [formControl]="firstName" />
+                    <label>
+                        Last name
+                    </label>
+                    <input class="input" placeholder="Last name" type="text" id="email" [formControl]="lastName" />
+                </div>
+                <label>
+                    Email address
+                </label>
+                <input class="input" placeholder="Email address" type="text" id="email" [formControl]="email" />
+                <label>
+                    Password:
+                </label>
+                <input class="input" placeholder="Password" type="password" id="password" [formControl]="password" />
+                <input type="submit" value="Register" (click)="onLogin" class="button" />
+            </form>
+        </div>
+    </div>
+
+</div>

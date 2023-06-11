@@ -29,6 +29,7 @@ export class Team {
     set fastestLaps(fastestLaps: number) { this.#fastestLaps = fastestLaps }
     get drivers() { return this.#drivers }
     set drivers(drivers: [Driver]) { this.#drivers = drivers}
+
     fillFromFormGroup(form: FormGroup) {
         this.teamName = form.value.teamName;
     }

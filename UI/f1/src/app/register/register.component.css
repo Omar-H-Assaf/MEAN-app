@@ -1,0 +1,29 @@
+.second-nav {
+    background-color: #1f1f27;
+    height: 3rem;
+    width: 100%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.header-span {
+    margin-right: 1rem;
+    font-size: 14px;
+    letter-spacing: .5px;
+    font-weight: 500;
+    display: block;
+    padding: 15px 25px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.header-span::after {
+    background: #e00;
+    opacity: 1;
+    transition: .1s;
+}
+

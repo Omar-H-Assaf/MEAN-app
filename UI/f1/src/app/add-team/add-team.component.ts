@@ -9,6 +9,10 @@ import { FormControl } from '@angular/forms';
 export class AddTeamComponent {
   teamName = new FormControl('');
 
+  onAdd() {
+    
+  }
+
   updateName() {
     console.log(this.teamName.value); 
   }

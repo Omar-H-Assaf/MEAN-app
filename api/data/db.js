@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 require("./team-models");
+require("./user-models");
 
 const callbackify = require("util").callbackify;
 
