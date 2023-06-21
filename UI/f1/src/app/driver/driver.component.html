@@ -1,7 +1,7 @@
-<div *ngIf="!editPage" class="driver-container">
+<div class="driver-container">
     <img class="driver-image"
-        src="https://media.formula1.com/content/dam/fom-website/drivers/2023Drivers/verstappen.jpg.img.1920.medium.jpg/1677069646195.jpg" />
-    <div class="driver-info-container">
+        src="{{driver.driverMainImage}}" />
+    <div class="driver-info-container" >
         <div class="driver-info">
             <span class="stat-key">Driver Name</span>
             <span class="stat-value">{{driver.driverName}}</span>
@@ -30,44 +30,11 @@
             <span class="stat-key">World Championships</span>
             <span class="stat-value">{{driver.worldChampionships}}</span>
         </div>
-        <div *ngIf="isLogedin"  class="submit-container">
-            <input type="submit" value="Edit" class="button" (click)="editDriver()" />
-            <input type="submit" style="background-color: #1f1f27;" value="Delete" class="button" (click)="deleteDriver()" />
+        <div class="submit-container">
+            <input type="button" value="Back" class="button" (click)="back()" />
+            <input *ngIf="isLogedin" type="submit" value="Edit" class="button" (click)="editDriver()" />
+            <input *ngIf="isLogedin" type="button" value="Delete" class="button delete-button"
+                (click)="deleteDriver()" />
         </div>
-    </div>
-</div>
-<div *ngIf="editPage" class="card-container">
-    <div class="register-card">
-        <h1 class="header">Edit Driver: {{driver.driverName}}</h1>
-        <form (ngSubmit)="onEdit()" class="signin-form">
-            <label>
-                Driver name
-            </label>
-            <input class="input" placeholder="Driver Name" type="text" id="driverName" />
-            <label>
-                Driver Number:
-            </label>
-            <input class="input" placeholder="Driver Number" type="text" id="driverNumber" />
-            <label>
-                Country:
-            </label>
-            <input class="input" placeholder="Country" type="text" id="country" />
-            <label>
-                Podiums:
-            </label>
-            <input class="input" placeholder="Podiums" type="text" id="podiums" />
-            <label>
-                Grands Prix Entered:
-            </label>
-            <input class="input" placeholder="Grands Prix Entered" type="text" id="grandsPrixEntered" />
-            <label>
-                World Championships:
-            </label>
-            <input class="input" placeholder="worldChampionships" type="text" id="worldChampionships" />
-            <div class="submit-container">
-                <input type="submit" value="Save" class="button" />
-                <span class="back-span" (click)="backButton()">Back</span>
-            </div>
-        </form>
     </div>
 </div>

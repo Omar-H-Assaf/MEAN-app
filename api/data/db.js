@@ -9,21 +9,21 @@ const mongooseCloseWithCallBack = callbackify(mongoose.disconnect);
 
 mongoose.connect(process.env.MONGODB);
 
-mongoose.connection.on("connected", () => {
-    console.log("Mongoose connected to " + process.env.MONGODBNAME);
+mongoose.connection.on(process.env.DB_CONNECTED, () => {
+    console.log(process.env.DB_CONNECTED_TO + process.env.MONGODBNAME);
 });
 
-mongoose.connection.on("disconnect", () => {
-    console.log("Mongoose disconnected");
+mongoose.connection.on(process.env.DB_DISCONNECTED, () => {
+    console.log(process.env.DB_DISCONNECTED_MESSAGE);
 });
 
-mongoose.connection.on("error", (err) => {
-    console.log("Mongoose error", err);
+mongoose.connection.on(process.env.DB_ERROR, (err) => {
+    console.log(process.env.DB_ERROR_MESSAGE, err);
 });
 
-process.on("SIGINT", () => {
+process.on(process.env.DB_TERMINATE, () => {
     mongooseCloseWithCallBack(() => {
-        console.log("Mongoose disconnected by app termination");
+        console.log(process.env.DB_TEMINATE_MESSAGE);
         process.exit();
     });
 })

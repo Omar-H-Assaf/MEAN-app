@@ -1,0 +1,35 @@
+<div class="card-container">
+    <div class="register-card">
+        <h1 class="header">Edit Driver: {{driver.driverName}}</h1>
+        <form (ngSubmit)="onEdit()" class="signin-form">
+            <label>
+                Driver name
+            </label>
+            <input class="input" value="{{driver.driverName}}" placeholder="Driver Name" type="text" id="driverName" [formControl]="driverName"/>
+            <label>
+                Driver Number:
+            </label>
+            <input class="input" placeholder="Driver Number" type="number" value="{{driver.driverNumber}}" id="driverNumber" [formControl]="driverNumber"/>
+            <label>
+                Country:
+            </label>
+            <input class="input" placeholder="Country" type="text" value="{{driver.country}}" id="country" [formControl]="country"/>
+            <label>
+                Podiums:
+            </label>
+            <input class="input" placeholder="Podiums" type="number" value="{{driver.podiums}}" id="podiums" [formControl]="podiums"/>
+            <label>
+                Grands Prix Entered:
+            </label>
+            <input class="input" placeholder="Grands Prix Entered" type="number" value="{{driver.grandsPrixEntered}}" id="grandsPrixEntered" [formControl]="grandsPrixEntered"/>
+            <label>
+                World Championships:
+            </label>
+            <input class="input" placeholder="World Championships" type="number" value="{{driver.worldChampionships}}" id="worldChampionships" [formControl]="worldChampionships"/>
+            <div class="submit-container">
+                <input type="button" (click)="backButton()" value="Back" class="button" />
+                <input type="submit" value="Save" class="button" />
+            </div>
+        </form>
+    </div>
+</div>

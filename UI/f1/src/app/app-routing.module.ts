@@ -6,6 +6,10 @@ import { TeamComponent } from './team/team.component';
 import { AddTeamComponent } from './add-team/add-team.component';
 import { RegisterComponent } from './register/register.component';
 import { DriverComponent } from './driver/driver.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { EditTeamComponent } from './edit-team/edit-team.component';
+import { EditDriverComponent } from './edit-driver/edit-driver.component';
+import { AddDriverComponent } from './add-driver/add-driver.component';
 
 const routes: Routes = [
   {
@@ -31,6 +35,22 @@ const routes: Routes = [
   {
     path: "teams/:teamId/drivers/:driverId",
     component: DriverComponent
+  },
+  {
+    path: "teams/:teamId/drivers/:driverId/edit",
+    component: EditDriverComponent
+  },
+  {
+    path: "teams/:teamId/edit",
+    component: EditTeamComponent
+  },
+  {
+    path: "add-driver",
+    component: AddDriverComponent,
+  },
+  {
+    path: "**",
+    component: ErrorPageComponent
   }
 ];
 

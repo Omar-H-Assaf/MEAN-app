@@ -1,0 +1,104 @@
+.team-container {
+    margin: 3rem;
+}
+
+.team-card {
+    background-color: #fff;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.team-info {
+    margin: 2rem;
+    padding: 2rem;
+}
+
+.drivers {
+    display: flex;
+    justify-content: right;
+        position: relative;
+}
+
+.team-info-span {
+    display: flex;
+    align-items: center;
+}
+
+.stat-key {
+    padding: 4px 0 4px 10px;
+    text-align: left;
+    width: 50%;
+    font-family: 'F1BoldRegular', Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1.222;
+}
+
+.stat-value {
+    font-family: 'F1BoldRegular', Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+
+.driver-card {
+    height: 100%;
+    width: 20rem;
+    border-width: 2px;
+    border-color: #e2e2e2;
+    border-style: solid;
+    cursor: pointer;
+}
+
+.driver-card:hover {
+    background-color: #15151e;
+    color: #fff;
+}
+
+.driver-img {
+    width: 20rem;
+}
+
+.driver-info {
+    padding: 1rem;
+}
+
+.next-button {
+    position: absolute;
+    right: 0rem;
+    bottom: 0rem;
+    color: #fff;
+    width: 2rem;
+    height: 4rem;
+    background-color: #e00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.next-button:hover {
+    background-color: #fff;
+    color: #e00;
+    border: solid 2px #e00;
+}
+
+.previous-button {
+        position: absolute;
+            left: 0rem;
+            bottom: 0rem;
+            color: #fff;
+            width: 2rem;
+            height: 4rem;
+            background-color: #e00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+}
+
+.previous-button:hover {
+    background-color: #fff;
+    color: #e00;
+    border: solid 2px #e00;
+}

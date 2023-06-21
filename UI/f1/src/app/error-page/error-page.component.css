@@ -1,0 +1,26 @@
+.error-wrapper {
+    margin: 3rem;
+}
+
+.error-header {
+    margin-bottom: 24px;
+    font-weight: 400;
+    font-size: 4.2rem;
+    line-height: 1.1428;
+    margin-right: 10rem;
+    cursor: default;
+}
+
+h3 {
+    cursor: default;
+}
+
+span {
+    color: #e00;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+span:hover {
+    font-weight: 800;
+}

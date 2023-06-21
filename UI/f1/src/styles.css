@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-body{
+body {
     margin: 0;
     background-color: #f7f4f1;
     font-family: 'F1BoldRegular', Helvetica, sans-serif;
+    cursor: default;
 }
+
 .button {
     margin-left: 0;
     margin-top: 15px;
@@ -25,12 +27,21 @@ body{
     font-weight: 500;
     color: #fff;
     width: 8rem;
+    transition: all .5s cubic-bezier(.2, 0, .05, 1);
 }
+
+.button:hover {
+    background-color: #fff;
+    color: #e00;
+    border: solid 2px #e00;
+}
+
 .card-container {
     display: grid;
     justify-content: center;
     align-content: center;
 }
+
 .register-card {
     height: fit-content;
     width: 90%;
@@ -40,10 +51,12 @@ body{
     border-radius: 10px;
     padding: 2rem;
 }
+
 .header {
     display: flex;
     justify-content: start;
 }
+
 .signin-form {
     display: grid;
     justify-content: start;
@@ -62,4 +75,39 @@ body{
     padding: 15px 10px;
     margin-top: 1rem;
     margin-bottom: 2rem;
+}
+
+.delete-button {
+    background-color: #1f1f27;
+}
+
+.delete-button:hover {
+    background-color: #fff;
+    color: #1f1f27;
+    border: solid 2px #1f1f27;
+}
+
+.submit-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.f1-logo {
+    height: 4rem;
+    width: 8rem;
+    cursor: pointer;
+}
+
+.icons {
+    height: 1.2rem;
+    width: 1.2rem;
+    margin-right: 1rem;
+}
+
+.car-image {
+    margin-left: 5%;
+    margin-top: 1rem;
+    height: 10rem;
+    width: 100%;
 }

@@ -1,35 +1,49 @@
 <div class="card-container">
     <div class="register-card">
         <h1 class="header">Add a new Team!</h1>
-        <form (ngSubmit)="onAdd()" class="signin-form">
+        <form class="signin-form" [formGroup]="myForm" (ngSubmit)="onNext(myForm)">
+            <label>
+                Full Team Name
+            </label>
+            <input class="input" placeholder="Full Team Name" type="text" formControlName="fullTeamName" required />
             <label>
                 Team Name
             </label>
-            <input class="input" placeholder="Team Name" type="text" id="teamName" />
+            <input class="input" placeholder="Team Name" type="text" formControlName="teamName" required />
             <label>
                 Team Cheif:
             </label>
-            <input class="input" placeholder="Team Cheif" type="text" id="teamCheif" />
+            <input class="input" placeholder="Team Cheif" type="text" formControlName="teamCheif" required />
+            <label>
+                Team Color
+            </label>
+            <input class="input" placeholder="Team Color" type="text" formControlName="teamcolor" required />
             <label>
                 Power Unit:
             </label>
-            <input class="input" placeholder="Power Unit" type="number" id="powerUnit" />
+            <input class="input" placeholder="Power Unit" type="text" formControlName="powerUnit" required />
             <label>
                 First Team Entry:
             </label>
-            <input class="input" placeholder="First Team Entry" type="number" id="firstTeamEntry" />
+            <input class="input" placeholder="First Team Entry" type="number" formControlName="firstTeamEntry"
+                required />
             <label>
                 World Champions:
             </label>
-            <input class="input" placeholder="World Champions" type="number" id="worldChampions" />
+            <input class="input" placeholder="World Champions" type="number" formControlName="worldChampions"
+                required />
             <label>
                 Pole Posiotion
             </label>
-            <input class="input" placeholder="Pole Posiotion" type="number" id="polePosiotion" />
+            <input class="input" placeholder="Pole Posiotion" type="number" formControlName="polePosiotion" required />
             <label>
                 Fastest Laps
             </label>
-            <input class="input" placeholder="Fastest Laps" type="number" id="fastestLaps" />
+            <input class="input" placeholder="Fastest Laps" type="number" formControlName="fastestLaps" required />
+            <label>
+                Car Image URL
+            </label>
+            <input class="input" placeholder="Car Image" type="text" formControlName="carImage" required />
             <input type="submit" value="Next" class="button" />
         </form>
     </div>

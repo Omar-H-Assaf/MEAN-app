@@ -6,6 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: start;
+    text-align: center;
     background-image: url(https://www.formula1.com/etc/designs/fom-website/images/homepage/standings/bg@2x.jpg);
     color: #fff;
     height: 15rem;
@@ -51,7 +52,7 @@ li {
     width: 50rem;
 }
 
-.test {
+.team-info {
     padding: 15px 10px 15px 20px;
     transition: .4s cubic-bezier(.35, .15, .6, 1);
     width: 100%;
@@ -66,6 +67,12 @@ li {
     cursor: pointer;
 }
 
+.team-info:hover {
+    background-color: #15151e;
+    color: #fff;
+    cursor: pointer;
+}
+
 .position {
     position: relative;
     top: 1px;
@@ -76,7 +83,6 @@ li {
 }
 
 .team-color {
-    background: #3671C6;
     width: 4px;
     height: 14px;
     margin: 0 10px;
@@ -114,4 +120,5 @@ li {
     padding: 2px 10px;
     background-color: #ededed;
     margin-right: 1rem;
+    color: #15151e;
 }

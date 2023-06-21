@@ -1,134 +1,94 @@
-const callbackify = require("util").callbackify
 const mongoose = require("mongoose");
 
-const Team = mongoose.model("Team");
+const Team = mongoose.model(process.env.TEAM_MODEL_NAME);
 
-const teamFindAllExecWithCallBack = callbackify((offset, count) => {
-    return Team.find().skip(offset).limit(count).exec();
-});
+const response = { status: process.env.SUCCESS_STATUS, message: [] };
 
-const teamAddOneExecWithCallBack = callbackify((team) => {
-    return Team.create(team);
-});
+const _checkTeam = (team) => {
+    return new Promise((resolve, reject) => {
+        if (team !== null) {
+            resolve(team);
+        } else {
+            reject(_setResponse(process.env.ERROR_STATUS_NOT_FOUND_STATUS, process.env.TEAM_ERROR_STATUS_NOT_FOUND_MESSAGE));
+        }
+    })
+}
 
-const teamDeleteOneExecWithCallBack = callbackify((teamId) => {
-    return Team.findByIdAndDelete(teamId);
-});
+const _setResponse = (status, message) => {
+    response.status = status;
+    response.message = message;
+}
 
-const teamFindOneExecWithCallBack = callbackify((teamId) => {
-    return Team.findById(teamId);
-});
-
-const teamUpdateOneExecWithCallBack = callbackify((teamId, team) => {
-    return Team.findByIdAndUpdate(teamId, team);
-});
+const _sendResponse = (res) => {
+    res.status(response.status).json(response.message);
+}
 
 const getAllTeams = (req, res) => {
-    let offset = 0;
-    let count = 5;
-    const maxCount = parseInt(process.env.DEFAULT_MAX_FIND_LIMIT, 10);
-    const response = { status: 200, message: [] };
+    let offset = process.env.OFFSET;
+    let count = process.env.TEAM_COUNT;
+    const maxCount = parseInt(process.env.DEFAULT_MAX_FIND_LIMIT, process.env.PARSE_INT);
+
     if (req.query && req.query.offset) {
-        offset = parseInt(req.query.offset, 10);
+        offset = parseInt(req.query.offset, process.env.PARSE_INT);
     }
     if (req.query && req.query.count) {
-        count = parseInt(req.query.count, 10);
+        count = parseInt(req.query.count, process.env.PARSE_INT);
     }
 
     if (isNaN(offset) || isNaN(count)) {
-        res.status(400).json({
-            "message": "QueryString Offset and Count should benumbers"});
-            return;
-        }
-    if (count > maxCount) {
-            res.status(400).json({ "message": "Cannot exceed count of " + maxCount });
-            return;
+        _setResponse(process.env.ERROR_STATUS_NOT_FOUND_STATUS, process.env.OFFSET_COUNT_TYPE_ERROR_MESSAGE);
+        _sendResponse(res);
+        return;
     }
-    Team.find().skip(offset).limit(count).exec().then(teams => {
-        res.status(response.status).json(teams);
-    }).catch(err => {});
-    // teamFindAllExecWithCallBack(offset, count, req.params.teamId, (err, teams) => {
-    //     if (err) {
-    //         response.status = 500;
-    //         response.message = err;
-    //     } else {
-    //         response.status = 200;
-    //         response.message = teams;
-    //     }
-    //     res.status(response.status).json(response.message);
-    // })
+    if (count > maxCount) {
+        _setResponse(process.env.ERROR_STATUS_NOT_FOUND_STATUS, process.env.MAX_COUNT_ERROR_MESSAGE + maxCount);
+        _sendResponse(res);
+        return;
+    }
+    Team.find().skip(offset).limit(count).exec()
+        .then(teams => _setResponse(process.env.SUCCESS_STATUS, teams))
+        .catch(err => _setResponse(process.env.ERROR_STATUS_SERVER_STATUS, err))
+        .finally(() => _sendResponse(res));
 }
 
-    // bcrypt.genSalt(10).then((salt) => {
-    //     _getSalt(req.body.password, salt)
-    //         .then((encryptedPassword) => {
-    //             userModel.create({
-    //                 email: req.body.email,
-    //                 password: encryptedPassword,
-    //                 firstName: req.body.firstName,
-    //                 lastName: req.body.lastName,
-    //             }).then().catch(err => { console.log(err); });
-    //         });
-    // });
-    // userModel.create(req.body).then().catch(err => {console.log(err);});
 const addOneTeam = (req, res) => {
-    teamAddOneExecWithCallBack(req.body, (err, team) => {
-        const response = { status: 200, message: [] };
-        if (err) {
-            response.status = 500;
-            response.message = err;
-        } else {
-            response.status = 200;
-            response.message = team;
-        }
-        res.status(response.status).json(response.message);
-    })
+    Team.create(req.body)
+        .then(team => _setResponse(process.env.SUCCESS_STATUS, team))
+        .catch(err => _setResponse(process.env.ERROR_STATUS_SERVER_STATUS, err))
+        .finally(() => _sendResponse(res));
 }
 
 const deleteOneTeam = (req, res) => {
-    teamDeleteOneExecWithCallBack(req.params.teamId, (err , team) => {
-        const response = { status: 200, message: [] };
-        if (err) {
-            response.status = 500;
-            response.message = err;
-        }
-        else if (team === null) {
-            response.status = 200;
-            response.message = "Team Not Found!";
-        } else {
-            response.status = 200;
-            response.message = team;
-        }
-        res.status(response.status).json(response.message);
-    })
+    Team.findByIdAndDelete(req.params.teamId)
+        .then(team => _checkTeam(team))
+        .then(team => _setResponse(process.env.SUCCESS_STATUS, team))
+        .catch(err => _setResponse(process.env.ERROR_STATUS_SERVER_STATUS, err))
+        .finally(() => _sendResponse(res));
 }
 
 const getOneTeam = (req, res) => {
-    teamFindOneExecWithCallBack(req.params.teamId, (err, team) => {
-        const response = { status: 200, message: [] };
-        if (err) {
-            response.status = 500;
-            response.message = err;
-        } else {
-            response.status = 200;
-            response.message = team;
-        }
-        res.status(response.status).json(response.message);
-    })
+    Team.findById(req.params.teamId)
+        .then(team => _checkTeam(team))
+        .then(team => _setResponse(process.env.SUCCESS_STATUS, team))
+        .catch(err => _setResponse(process.env.ERROR_STATUS_SERVER_STATUS, err))
+        .finally(() => _sendResponse(res));
 }
 
 const updateOneTeam = (req, res) => {
-    teamUpdateOneExecWithCallBack(req.params.teamId, req.body, (err, team) => {
-        const response = { status: 200, message: [] };
-        if (err) {
-            response.status = 500;
-            response.message = err;
-        } else {
-            response.status = 200;
-            response.message = team;
-        }
-        res.status(response.status).json(response.message);
-    })
+    Team.findByIdAndUpdate(req.params.teamId, req.body)
+        .then(team => _checkTeam(team))
+        .then(team => _setResponse(process.env.SUCCESS_STATUS, team))
+        .catch(err => _setResponse(process.env.ERROR_STATUS_SERVER_STATUS, err))
+        .finally(() => _sendResponse(res));
+}
+
+const getAllTeamsCount = (req, res) => {
+    Team.find().count().exec()
+        .then(count => _setResponse(process.env.SUCCESS_STATUS, count))
+        .catch(err => _setResponse(process.env.ERROR_STATUS_SERVER_STATUS, err))
+        .finally(() => _sendResponse(res));
+
+
 }
 
 module.exports = {
@@ -136,5 +96,6 @@ module.exports = {
     addOneTeam,
     deleteOneTeam,
     getOneTeam,
-    updateOneTeam
+    updateOneTeam,
+    getAllTeamsCount
 }

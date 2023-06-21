@@ -1,26 +1,61 @@
-<br />
-<br />
-<br />
+<div class="team-container">
+    <h1>{{team.teamName}}</h1>
+    <div class="team-card">
+        <div class="team-info">
+            <img class="car-image"
+                src="{{team.carImage}}" />
+            <div class="team-info-span">
+                <span class="stat-key">Full Team Name:</span>
+                <span class="stat-value">{{team.fullTeamName}}</span>
+            </div>
+            <div class="team-info-span">
+                <span class="stat-key">Team Cheif:</span>
+                <span class="stat-value">{{team.teamCheif}}</span>
+            </div>
+            <div class="team-info-span">
+                <span class="stat-key">Power Unit:</span>
+                <span class="stat-value">{{team.powerUnit}}</span>
+            </div>
+            <div class="team-info-span">
+                <span class="stat-key">First Team Entry:</span>
+                <span class="stat-value">{{team.firstTeamEntry}}</span>
+            </div>
+            <div class="team-info-span">
+                <span class="stat-key">World Champions:</span>
+                <span class="stat-value">{{team.worldChampions}}</span>
+            </div>
+            <div class="team-info-span">
+                <span class="stat-key">Pole Posiotion:</span>
+                <span class="stat-value">{{team.polePosiotion}}</span>
+            </div>
+            <div class="team-info-span">
+                <span class="stat-key">Fastest Laps:</span>
+                <span class="stat-value">{{team.fastestLaps}}</span>
+            </div>
+            <div class="submit-container">
+                <button class="button" routerLink="/teams/{{team._id}}/edit">Edit</button>
+                <input type="submit" value="Delete" (click)="onClickDelete()" class="button delete-button" />
+            </div>
+            <button class="button" (click)="addDriver()">Add new driver</button>
 
-<div *ngIf="!showLabel">
-Team Name: {{team.teamName}}
-</div>
-<div *ngIf="showLabel">
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-    <label>Team Name:</label>
-    <input defaultValue="{{team.teamName}}" id="name" formControlName="teamName"/>
-    <br />
-    <br />
-    <br />
-    <input type="submit" value="Save"/>
-    </form>
-</div>
+        </div>
+        <div class="drivers">
+            <div *ngIf="offset > 0" class="previous-button" (click)="previousDriver()">&#60;</div>
 
-<br />
-<br />
-<br />
-<div *ngIf="!showLabel">
-<button (click)="onClickEdit()">{{buttonText}}</button>
-<button (click)="onClickDelete()">delete</button>
-
+            <div class="driver-card" *ngFor="let driver of drivers"
+                routerLink="/teams/{{team._id}}/drivers/{{driver._id}}">
+                <img class="driver-img"
+                    src="{{driver.driverMainImage}}" />
+                <div class="driver-info">
+                    <h2>{{driver.driverNumber}}</h2>
+                    <h3>{{driver.driverName}}</h3>
+                    <h3>{{driver.country}}</h3>
+                    <h3><img class="icons" src="../../assets/icons/trophy.png">{{driver.worldChampionships}}</h3>
+                </div>
+            </div>
+            <div *ngIf="offset < numberOfDrivers-2 && numberOfDrivers > 2" class="next-button" (click)="nextDriver()">
+                >
+            </div>
+        </div>
+    </div>
 </div>

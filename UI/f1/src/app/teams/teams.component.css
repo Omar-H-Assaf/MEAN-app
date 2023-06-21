@@ -10,12 +10,14 @@
 .header-border {
     border-top: solid 10px #15151e;
     border-right: solid 10px #15151e;
-    border-top-right-radius: 25px
+    border-top-right-radius: 25px;
+        cursor: default;
 }
 
 .header-h1 {
     font-size: 62px;
     line-height: 62px;
+        cursor: default;
 }
 
 .team-card {
@@ -86,7 +88,45 @@ h2 {
     width: 50px;
 }
 
-.car-image {
-    margin-left: 9%;
-    margin-top: 1rem;
+.next-button {
+    right: 0rem;
+    bottom: 0rem;
+    color: #fff;
+    width: 2rem;
+    height: 4rem;
+    background-color: #e00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.next-button:hover {
+    background-color: #fff;
+    color: #e00;
+    border: solid 2px #e00;
+}
+
+.previous-button {
+    left: 0rem;
+    bottom: 0rem;
+    color: #fff;
+    width: 2rem;
+    height: 4rem;
+    background-color: #e00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.previous-button:hover {
+    background-color: #fff;
+    color: #e00;
+    border: solid 2px #e00;
+}
+.next-previus-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

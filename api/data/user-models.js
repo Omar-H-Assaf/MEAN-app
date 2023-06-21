@@ -3,22 +3,22 @@ const mongoose = require("mongoose");
 const userSchema = mongoose.Schema({
     email: {
         type: String,
-        required: [true, "Email must be provided"],
-        unique: [true, "Email already register"]
+        required: [true, process.env.USER_MODEL_EMAIL_REQUIRED],
+        unique: [true, process.env.USER_MODEL_EMAIL_UNIQUE]
     },
     password: {
         type: String,
-        required: [true, "Password must be provided"],
+        required: [true, process.env.USER_MODEL_PASSWORD_REQUIRED],
         minlength: 6
     },
     firstName: {
         type: String,
-        required: [true, "First name must be provided"],
+        required: [true, process.env.USER_MODEL_FIRSTNAME_REQUIRED],
     },
     lastName: {
         type: String,
-        required: [true, "Last name must be provided"],
+        required: [true, process.env.USER_MODEL_LASTNAME_REQUIRED],
     }
 });
 
-mongoose.model("User", userSchema, "users");
+mongoose.model(process.env.USER_MODEL_NAME, userSchema, process.env.USER_COLLECTION_NAME);

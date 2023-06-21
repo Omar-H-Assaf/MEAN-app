@@ -17,19 +17,25 @@
                     Team Cheif: {{team.teamCheif}}
                 </h2>
                 <div class="driver-section">
-                    <ng-container *ngFor="let driver of team.drivers ">
+                    <ng-container *ngFor="let driver of spliceDrivers(team.drivers) ">
                         <div class="driver-wrapper" routerLink="/teams/{{team._id}}/drivers/{{driver._id}}">
                             <h3>
                                 {{driver.driverName}}
                             </h3>
-                            <img class="driver-image" src="https://media.formula1.com/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/2col/image.png"/>
+                            <img class="driver-image" src="{{driver.driverImage}}"/>
                         </div>
                     </ng-container>
                 </div>
             </div>
             <img
                 class="car-image"
-                src="https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2023/red-bull-racing.png.transform/4col/image.png" />
+                src="{{team.carImage}}" />
         </div>
     </div>
+    <div class="next-previus-container">
+    <div *ngIf="offset > 0" class="previous-button" (click)="previousTeam()">&#60;</div>
+    <div *ngIf="offset < numberOfTeams-4 && numberOfTeams > 4" class="previous-button" (click)="nextTeam()">></div>
+
+    </div>
+
 </div>

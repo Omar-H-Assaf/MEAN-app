@@ -1,0 +1,51 @@
+<div class="card-container">
+    <div class="register-card">
+        <h1 class="header">{{team.teamName}}</h1>
+        <form class="signin-form" (ngSubmit)="onEdit()">
+            <label>
+                Full Team Name
+            </label>
+            <input class="input" placeholder="Full Team Name" type="text" [formControl]="fullTeamName" required />
+            <label>
+                Team Name:
+            </label>
+            <input class="input" value="{{team.teamName}}" [formControl]="teamName" placeholder="Team Name" type="text" id="teamName" />
+            <label>
+                Team color:
+            </label>
+            <input class="input" value="{{team.teamcolor}}" placeholder="Team Color" [formControl]="teamcolor" type="text" id="teamcolor" />
+            <label>
+                Team Cheif:
+            </label>
+            <input class="input" value="{{team.teamCheif}}" placeholder="Team Cheif" type="text" id="teamCheif" [formControl]="teamCheif"/>
+            <label>
+                Power Unit:
+            </label>
+            <input class="input" value="{{team.powerUnit}}" placeholder="Power Unit" type="text" id="powerUnit" [formControl]="powerUnit"/>
+            <label>
+                First Team Entry:
+            </label>
+            <input class="input" value="{{team.firstTeamEntry}}" placeholder="First Team Entry" type="number"
+                id="firstTeamEntry" [formControl]="firstTeamEntry"/>
+            <label>
+                World Champions:
+            </label>
+            <input class="input" value="{{team.worldChampions}}" placeholder="World Champions" type="number"
+                id="worldChampions" [formControl]="worldChampions"/>
+            <label>
+                Pole Posiotion:
+            </label>
+            <input class="input" value="{{team.polePosiotion}}" placeholder="pole Posiotion" type="number"
+                id="polePosiotion" [formControl]="polePosiotion"/>
+            <label>
+                Fastest Laps:
+            </label>
+            <input class="input" value="{{team.fastestLaps}}" placeholder="Fastest Laps" type="number" [formControl]="fastestLaps"
+                />
+            <div class="submit-container">
+                <input type="button" value="Back" class="button" routerLink="/teams/{{team._id}}" />
+                <input type="submit" value="Save" class="button" />
+            </div>
+        </form>
+    </div>
+</div>

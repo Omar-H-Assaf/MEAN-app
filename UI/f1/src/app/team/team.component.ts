@@ -1,71 +1,91 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { TeamsDataService } from '../teams-data.service';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+
 import { Team } from '../classes/team';
+import { Driver } from '../classes/driver';
+import { DriversService } from '../drivers.service';
+import { TeamsDataService } from '../teams-data.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.css']
 })
-export class TeamComponent implements OnInit{
+export class TeamComponent implements OnInit {
   team!: Team;
+  drivers!: Driver[];
 
-  myForm!: FormGroup;
-
-  constructor(private route: ActivatedRoute, private teamService: TeamsDataService, private router: Router) {
+  constructor(private route: ActivatedRoute, private teamService: TeamsDataService, private router: Router, private driverService: DriversService) {
     this.team = new Team();
-  }  
-
-  showLabel: boolean = false;
-  buttonText: string = "Edit"
-
-  onClickEdit() {
-    this.showLabel = true;
-    this.buttonText = "Save";
   }
 
   getTeamID() {
-    return this.route.snapshot.params["teamId"];
+    return this.route.snapshot.params[environment.teamId];
+  }
+
+  addDriver() {
+    this.router.navigateByUrl(environment.navigateAddDriver, { state: { _id: this.getTeamID() } });
   }
 
   onClickDelete() {
-    this.teamService.deleteTeamsByID(this.getTeamID()).subscribe(msg => {
-      this.router.navigateByUrl('/teams');
+    this.teamService.deleteTeamsByID(this.getTeamID()).subscribe({
+      next: () => {
+        this.router.navigateByUrl(environment.navigateTeams);
+      },
+      error: (err) => {
+        console.log(err);
+
+      }
+
     })
+  }
+
+  count: number = environment.defaultDriverCount;
+  offset: number = environment.defaultDriverOffset;
+  numberOfDrivers!: number;
+
+  getAllDrivers() {
+    this.driverService.getAllDriverByTeamId(this.getTeamID(), this.count, this.offset).subscribe(
+      {
+        next: (drivers) => {
+          this.drivers = drivers;
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      
+    }
+    )
+  }
+
+  nextDriver() {
+    this.offset += environment.defaultDriverCount;    
+    this.getAllDrivers();
+  }
+
+  previousDriver() {
+    this.offset -= environment.defaultDriverCount;
+    this.getAllDrivers();
   }
 
   getTeam() {
     this.teamService.getTeamsByID(this.getTeamID()).subscribe(
       {
-        next : (team) => {
+        next: (team) => {
           this.team = team;
-          this.myForm = new FormGroup({
-            teamName: new FormControl(this.team.teamName),
-          });
+          this.numberOfDrivers = team.drivers?.length;          
         },
-        error : (err) => {
+        error: (err) => {
           console.log(err);
-        },
-        complete : () => {
-          console.log("completed");
         }
-     }
-     );
-  }
-
-  onSubmit(form: FormGroup) {
-    this.teamService.updateTeamsByID(this.getTeamID(), form.value).subscribe(team => {
-      this.team = team;
-      this.showLabel = false;
-      this.buttonText = "Edit";
-      this.getTeam();
-    })
+      }
+    );
   }
 
   ngOnInit(): void {
     this.getTeam();
+    this.getAllDrivers();
   }
 
 }

@@ -1,38 +1,20 @@
 <div class="home-container">
     <div class="home-header">
-        <h1 class="home-h1">Driver Standings</h1>
+        <div>
+            <h1 class="home-h1">{{headerText}}</h1>
+            <h1 class="home-h1">Team Standings</h1>
+        </div>
     </div>
     <div class="list">
         <ul class="top-drivers">
-            <li>
-                <div class="test">
-                    <span class="position">1</span>
-                    <span class="team-color"></span>
-                    <span class="driver-name">Max Verstabin</span>
-                    <span class="team-name">Red Bull Racing</span>
-                    <span class="points">170 PTS</span>
+            <li *ngFor="let team of teams;let indexOfelement=index;">
+                <div class="team-info" routerLink="/teams/{{team._id}}">
+                    <span class="position">{{indexOfelement+1}}</span>
+                    <span class="team-color" [ngStyle]="{backgroundColor: team.teamcolor}"></span>
+                    <span class="driver-name">{{team.teamName}}</span>
+                    <span class="team-name">{{team.powerUnit}}</span>
+                    <span class="points">{{team.worldChampions}}</span>
                 </div>
-
-            </li>
-            <li>
-                <div class="test">
-                    <span class="position">1</span>
-                    <span class="team-color"></span>
-                    <span class="driver-name">Max Verstabin</span>
-                    <span class="team-name">Red Bull Racing</span>
-                    <span class="points">170 PTS</span>
-                </div>
-
-            </li>
-            <li>
-                <div class="test">
-                    <span class="position">1</span>
-                    <span class="team-color"></span>
-                    <span class="driver-name">Max Verstabin</span>
-                    <span class="team-name">Red Bull Racing</span>
-                    <span class="points">170 PTS</span>
-                </div>
-
             </li>
         </ul>
     </div>

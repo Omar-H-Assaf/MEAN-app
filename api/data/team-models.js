@@ -14,13 +14,14 @@ const drivers = new mongoose.Schema({
     points: Number,
     grandsPrixEntered: Number,
     worldChampionships: Number,
-    // dateFfBirth: Date
+    driverImage: String,
+    driverMainImage: String
 })
 
 const teamsSchema = mongoose.Schema({
     teamName: {
         type: String,
-        required: [true, "Team name must be provided"]
+        required: true,
     },
     teamCheif: {
         type: String,
@@ -33,7 +34,8 @@ const teamsSchema = mongoose.Schema({
     worldChampions: Number,
     polePosiotion: Number,
     fastestLaps: Number,
+    carImage: String,
     drivers: [drivers],
 });
 
-mongoose.model("Team", teamsSchema, "teams");
+mongoose.model(process.env.TEAM_MODEL_NAME, teamsSchema, process.env.TEAM_COLLECTION_NAME);

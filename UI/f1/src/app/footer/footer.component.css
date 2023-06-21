@@ -1,0 +1,17 @@
+.f1-footer {
+    height: 15rem;
+    background-color: #15151e;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.f1-logo {
+    margin-top: 4rem;
+    margin-left: 2rem;
+}
+
+h4 {
+    color: #fff;
+    margin: 3rem;
+}

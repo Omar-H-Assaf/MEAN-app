@@ -1,0 +1,57 @@
+<div class="card-container">
+    <div class="register-card">
+        <h1 class="header">Now let's add Drivers!</h1>
+        <form [formGroup]="myForm" (ngSubmit)="onAdd(myForm)" class="signin-form">
+            <label>
+                Driver Name
+            </label>
+            <input class="input" placeholder="Driver Name" type="text" formControlName="driverName" />
+            <label>
+                Driver Number
+            </label>
+            <input class="input" placeholder="Driver Number" type="number" formControlName="driverNumber" />
+            <label>
+                Country:
+            </label>
+            <input class="input" placeholder="Country" type="text" formControlName="country" />
+            <label>
+                Podiums:
+            </label>
+            <input class="input" placeholder="Podiums" type="number" formControlName="podiums" />
+            <label>
+                Points:
+            </label>
+            <input class="input" placeholder="Points" type="number" formControlName="points" />
+            <label>
+                Grands Prix Entered:
+            </label>
+            <input class="input" placeholder="Grands Prix Entered" type="number" formControlName="grandsPrixEntered" />
+            <label>
+                World Championships
+            </label>
+            <input class="input" placeholder="World Championships" type="number" formControlName="worldChampionships" />
+            <label>
+                Driver Image URLworldChampionships
+            </label>
+            <input class="input" placeholder="Driver Image" type="text" formControlName="driverImage" />
+            <label>
+                Driver Main Image URL
+            </label>
+            <input class="input" placeholder="Driver Main Image" type="text"
+                formControlName="driverMainImage" />
+            <div class="button-wrapper">
+                <input type="button" (click)="onBack()" value="Back" class="button" />
+                <div *ngIf="isAddTeam">
+                    <label>Drivers</label>
+                    <ul *ngFor="let driver of drivers">
+                        <li>{{driver.driverName}}</li>
+                    </ul>
+                </div>
+
+                <input type="submit" value="{{addButtonText}}" class="button" />
+            </div>
+            <input *ngIf="isAddTeam" type="button" (click)="addNewDriver(myForm)" value="ADD DRIVER" class="button" />
+
+        </form>
+    </div>
+</div>

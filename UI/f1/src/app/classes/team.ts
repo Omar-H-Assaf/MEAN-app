@@ -10,7 +10,10 @@ export class Team {
     #worldChampions!: number;
     #polePosiotion!: number;
     #fastestLaps!: number;
-    #drivers!: [Driver];
+    #fullTeamName!: string;
+    #teamcolor!: string;
+    #drivers!: Driver[];
+    #carImage!: string;
 
     get _id() { return this.#_id };
     get teamName() { return this.#teamName }
@@ -27,16 +30,24 @@ export class Team {
     set polePosiotion(polePosiotion: number) { this.#polePosiotion = polePosiotion }
     get fastestLaps() { return this.#fastestLaps }
     set fastestLaps(fastestLaps: number) { this.#fastestLaps = fastestLaps }
+    get fullTeamName() { return this.#fullTeamName }
+    set fullTeamName(fullTeamName: string) { this.#fullTeamName = fullTeamName }
+    get teamcolor() { return this.#teamcolor }
+    set teamcolor(teamcolor: string) { this.#teamcolor = teamcolor }
+    get carImage() { return this.#carImage }
+    set carImage(carImage: string) { this.#carImage = carImage }
     get drivers() { return this.#drivers }
-    set drivers(drivers: [Driver]) { this.#drivers = drivers}
+    set drivers(drivers: Driver[]) { this.#drivers = drivers}
 
-    fillFromFormGroup(form: FormGroup) {
+    fillFormGroup(form: FormGroup) {
         this.teamName = form.value.teamName;
-    }
-
-    toJSON(): {} {
-        return {
-            teamName: this.#teamName,
-        }
+        this.teamCheif = form.value.teamCheif;
+        this.powerUnit = form.value.powerUnit;
+        this.firstTeamEntry = form.value.firstTeamEntry;
+        this.worldChampions = form.value.worldChampions;
+        this.polePosiotion = form.value.polePosiotion;
+        this.fastestLaps = form.value.fastestLaps;
+        this.fullTeamName = form.value.fullTeamName;
+        this.teamcolor = form.value.teamcolor;
     }
 }

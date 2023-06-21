@@ -7,12 +7,6 @@
     align-items: center;
 }
 
-.f1-logo {
-    height: 4rem;
-    width: 8rem;
-    cursor: pointer;
-}
-
 .dd {
     display: flex;
     justify-content: center;

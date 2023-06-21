@@ -5,10 +5,13 @@ export class Driver {
     #driverName!: string;
     #driverNumber!: number;
     #country!: string;
+    #driverImage!: string;
+    #driverMainImage!: string;
     #podiums!: number;
     #points!: number;
     #grandsPrixEntered!: number;
     #worldChampionships!: number;
+
     get _id() { return this.#_id };
     get driverName() { return this.#driverName }
     set driverName(driverName: string) { this.#driverName = driverName }
@@ -16,6 +19,10 @@ export class Driver {
     set driverNumber(driverNumber: number) { this.#driverNumber = driverNumber }
     get country() { return this.#country }
     set country(country: string) { this.#country = country }
+    get driverImage() { return this.#driverImage }
+    set driverImage(driverImage: string) { this.#driverImage = driverImage }
+    get driverMainImage() { return this.#driverMainImage }
+    set driverMainImage(driverMainImage: string) { this.#driverMainImage = driverMainImage }
     get podiums() { return this.#podiums }
     set podiums(podiums: number) { this.#podiums = podiums }
     get points() { return this.#points }
@@ -27,11 +34,15 @@ export class Driver {
 
     fillFromFormGroup(form: FormGroup) {
         this.#driverName = form.value.driverName;
-    }
-
-    toJSON(): {} {
-        return {
-            driverName: this.#driverName,
-        }
+        this.#driverNumber = form.value.driverNumber;
+        this.#country = form.value.country;
+        this.#driverNumber = form.value.driverNumber;
+        this.#country = form.value.country;
+        this.#podiums = form.value.podiums;
+        this.#points = form.value.points;
+        this.#grandsPrixEntered = form.value.grandsPrixEntered;
+        this.#worldChampionships = form.value.worldChampionships;
+        this.#driverImage = form.value.driverImage;
+        this.#driverMainImage = form.value.driverMainImage;
     }
 }

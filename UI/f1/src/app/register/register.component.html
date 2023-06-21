@@ -1,10 +1,10 @@
 <div class="second-nav">
-    <span class="header-span" (click)="signIn()">Sign in</span>
-    <span class="header-span" (click)="register()">Register</span>
+    <span class="header-span" [ngStyle]="{'borderBottom': isLogin ? '3px solid #e00' : 'none'}" (click)="signIn()">Sign in</span>
+    <span class="header-span" [ngStyle]="{'borderBottom': isLogin? 'none' :'3px solid #e00'}" (click)="register()">Register</span>
 </div>
 
 <div class="card-container">
-    <div *ngIf="isRegister">
+    <div *ngIf="isLogin">
         <div class="register-card">
             <h1 class="header">Sign in</h1>
 
@@ -21,7 +21,7 @@
             </form>
         </div>
     </div>
-    <div *ngIf="!isRegister">
+    <div *ngIf="!isLogin">
         <div class="register-card">
             <h1 class="header">CREATE ACCOUNT</h1>
 
@@ -30,20 +30,20 @@
                     <label>
                         First name
                     </label>
-                    <input class="input" placeholder="First name" type="text" id="email" [formControl]="firstName" />
+                    <input class="input" placeholder="First name" type="text" id="firstName" [formControl]="firstName" />
                     <label>
                         Last name
                     </label>
-                    <input class="input" placeholder="Last name" type="text" id="email" [formControl]="lastName" />
+                    <input class="input" placeholder="Last name" type="text" id="lastName" [formControl]="lastName" />
                 </div>
                 <label>
                     Email address
                 </label>
-                <input class="input" placeholder="Email address" type="text" id="email" [formControl]="email" />
+                <input class="input" placeholder="Email address" type="text" id="email2" [formControl]="email2" />
                 <label>
                     Password:
                 </label>
-                <input class="input" placeholder="Password" type="password" id="password" [formControl]="password" />
+                <input class="input" placeholder="Password" type="password" id="password2" [formControl]="password2" />
                 <input type="submit" value="Register" (click)="onLogin" class="button" />
             </form>
         </div>

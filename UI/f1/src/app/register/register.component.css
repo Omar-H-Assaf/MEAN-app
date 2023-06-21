@@ -20,10 +20,3 @@
     text-decoration: none;
     cursor: pointer;
 }
-
-.header-span::after {
-    background: #e00;
-    opacity: 1;
-    transition: .1s;
-}
-

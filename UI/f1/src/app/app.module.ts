@@ -12,7 +12,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddTeamComponent } from './add-team/add-team.component';
 import { RegisterComponent } from './register/register.component';
 import { DriverComponent } from './driver/driver.component';
-import { DriversComponent } from './drivers/drivers.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { EditTeamComponent } from './edit-team/edit-team.component';
+import { EditDriverComponent } from './edit-driver/edit-driver.component';
+import { AddDriverComponent } from './add-driver/add-driver.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { DriversComponent } from './drivers/drivers.component';
     AddTeamComponent,
     RegisterComponent,
     DriverComponent,
-    DriversComponent
+    ErrorPageComponent,
+    EditTeamComponent,
+    EditDriverComponent,
+    AddDriverComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
